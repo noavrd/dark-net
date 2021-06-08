@@ -1,0 +1,24 @@
+{
+  "name": "dark-net",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noavrd/dark-net.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noavrd/dark-net/issues"
+  },
+  "homepage": "https://github.com/noavrd/dark-net#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "puppeteer": "^10.0.0"
+  }
+}
