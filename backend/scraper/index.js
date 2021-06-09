@@ -32,7 +32,8 @@ async function createScraper() {
     const titles = [];
     const contents = [];
     const authors = [];
-    const dates = [];
+    const creationDate = [];
+    const creationTime = [];
 
     $('.col-sm-5').each((idx, elem) => {
       const title = $(elem).text();
@@ -49,15 +50,16 @@ async function createScraper() {
         let arr = [];
         arr = authorAndDate.split(' ');
         authors.push(arr[2]);
-        dates.push({
-          day: arr[4],
-          month: arr[5],
-          year: arr[6],
-          time: arr[7],
-        });
+        creationDate.push(`${arr[4]}/${arr[5]}/${arr[6]}`);
+        creationTime.push(arr[7]);
       }
       count++;
     });
+    console.log(titles);
+    console.log(contents);
+    console.log(authors);
+    console.log(creationDate);
+    console.log(creationTime);
   } catch (err) {
     console.log(err);
   }

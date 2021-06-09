@@ -19,6 +19,7 @@
   "homepage": "https://github.com/noavrd/dark-net#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.9",
+    "mongoose": "^5.12.13",
     "puppeteer": "^10.0.0"
   }
 }
