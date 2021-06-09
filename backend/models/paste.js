@@ -4,7 +4,8 @@ const pastesSchema = new mongoose.Schema({
   title: { type: String, require: true },
   content: { type: String, require: true },
   author: { type: String },
-  date: { type: String, require: true },
+  creationDate: { type: String, require: true },
+  creationTime: { type: Number, require: true },
 });
 
 const paste = mongoose.model('paste', pastesSchema);
