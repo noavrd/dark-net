@@ -10,4 +10,12 @@ app.get('/', (req, res) => {
   res.send('API server');
 });
 
+app.get('/api/pastes', async (req, res) => {
+  try {
+    const allPastes = await paste.find({});
+    res.send(allPastes);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 module.exports = app;
