@@ -1,5 +1,4 @@
 export default function SinglePaste({ singlePaste }) {
-  console.log(singlePaste);
   return (
     <div className="singlePaste">
       <h3>{singlePaste.title}</h3>
@@ -8,8 +7,8 @@ export default function SinglePaste({ singlePaste }) {
       })}
       <div>
         <span>{singlePaste.author}</span>
+        <span> </span>
         <span>{singlePaste.creationDate}</span>
-        {/* <span>{singlePaste.creationTime}</span> */}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ async function createScraper() {
     //Open the browser
     console.log('Opening the browser......');
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: runWithProxy,
       ignoreHTTPSErrors: true,
     });
@@ -88,7 +88,6 @@ async function createScraper() {
         creationDate.push(
           `${arr[4]}/${arr[5]}/${arr[6].slice(0, 4)} ${arr[7]}`
         );
-        // creationTime.push(arr[7]);
       }
       count++;
     });
@@ -101,7 +100,6 @@ async function createScraper() {
         content: contents[i],
         author: authors[i],
         creationDate: creationDate[i],
-        // creationTime: creationTime[i],
       });
     }
 
