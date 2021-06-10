@@ -5,7 +5,7 @@ const pastesSchema = new mongoose.Schema({
   content: { type: Array, require: true },
   author: { type: String },
   creationDate: { type: Date, require: true },
-  creationTime: { type: String, require: true },
+  // creationTime: { type: String, require: true },
 });
 
 const Paste = mongoose.model('pastes', pastesSchema);

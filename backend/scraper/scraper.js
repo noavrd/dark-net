@@ -45,7 +45,6 @@ async function createScraper() {
       //Remove unnessecey letters && spaces
       title = title.split(/\t|\n/).filter((text) => !/^\s*$/g.test(text));
       let newTitle = title[0];
-      arr = authorAndDate.split(' ');
       if (
         newTitle === 'Anonymous' ||
         newTitle === 'Unknown' ||
@@ -86,8 +85,10 @@ async function createScraper() {
         }
         authors.push(arr[2]);
 
-        creationDate.push(`${arr[4]}/${arr[5]}/${arr[6].slice(0, 4)}`);
-        creationTime.push(arr[7]);
+        creationDate.push(
+          `${arr[4]}/${arr[5]}/${arr[6].slice(0, 4)} ${arr[7]}`
+        );
+        // creationTime.push(arr[7]);
       }
       count++;
     });
@@ -100,7 +101,7 @@ async function createScraper() {
         content: contents[i],
         author: authors[i],
         creationDate: creationDate[i],
-        creationTime: creationTime[i],
+        // creationTime: creationTime[i],
       });
     }
 
