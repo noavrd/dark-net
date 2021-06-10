@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 app.get('/api/pastes', async (req, res) => {
   try {
     const allPastes = await paste.find({});
+
     res.send(allPastes);
   } catch (err) {
     res.status(500).send(err);

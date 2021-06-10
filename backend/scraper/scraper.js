@@ -26,7 +26,6 @@ async function createScraper() {
   console.log(`Navigating to ${url}...`);
   try {
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 });
-    // const response = await page.$$eval('div.pre-header', (data) => data);
     const content = await page.content();
     const $ = cheerio.load(content);
     const titles = [];
@@ -36,11 +35,17 @@ async function createScraper() {
     const creationTime = [];
 
     $('.col-sm-5').each((idx, elem) => {
-      const title = $(elem).text();
-      titles.push(title);
+      let title = $(elem).text();
+      title = title.split(/\t|\n/).filter((text) => !/^\s*$/g.test(text));
+      let newTitle = title[0];
+      titles.push(newTitle);
     });
     $('.text').each((idx, elem) => {
-      const eachContent = $(elem).text();
+      let eachContent = $(elem).text();
+      eachContent = eachContent
+        .split(/\t|\n/)
+        .filter((text) => !/^\s*$/g.test(text));
+
       contents.push(eachContent);
     });
     let count = 0;
@@ -58,7 +63,8 @@ async function createScraper() {
           arr[2] = 'Anonymous';
         }
         authors.push(arr[2]);
-        creationDate.push(`${arr[4]}/${arr[5]}/${arr[6]}`);
+
+        creationDate.push(`${arr[4]}/${arr[5]}/${arr[6].slice(0, 4)}`);
         creationTime.push(arr[7]);
       }
       count++;
