@@ -13,9 +13,25 @@ app.get('/', (req, res) => {
 
 app.get('/api/pastes', async (req, res) => {
   try {
-    const allPastes = await Paste.find({});
+    const searchText = req.query.searchText;
 
-    res.send(allPastes);
+    if (!searchText) {
+      const allPastes = await Paste.find({});
+      res.send(allPastes);
+      return;
+    }
+    if (searchText.toLowerCase()) {
+      const expectedPaste = await Paste.find({
+        title: { $regex: searchText.toLowerCase(), $options: 'i' },
+      });
+
+      if (expectedPaste.length === 0) {
+        res.status(404).send('No such title');
+        return;
+      }
+
+      res.json(expectedPaste);
+    }
   } catch (err) {
     res.status(500).send(err);
   }

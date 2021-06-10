@@ -11,6 +11,7 @@ const runWithProxy = [
 ];
 async function createScraper() {
   try {
+    //Open the browser
     console.log('Opening the browser......');
     browser = await puppeteer.launch({
       headless: false,
@@ -25,7 +26,10 @@ async function createScraper() {
   let page = await browser.newPage();
   console.log(`Navigating to ${url}...`);
   try {
+    //Open the given URL
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 });
+
+    //Get the content from the URL
     const content = await page.content();
     const $ = cheerio.load(content);
     const titles = [];
@@ -34,14 +38,30 @@ async function createScraper() {
     const creationDate = [];
     const creationTime = [];
 
+    //Get the title
     $('.col-sm-5').each((idx, elem) => {
       let title = $(elem).text();
+
+      //Remove unnessecey letters && spaces
       title = title.split(/\t|\n/).filter((text) => !/^\s*$/g.test(text));
       let newTitle = title[0];
+      arr = authorAndDate.split(' ');
+      if (
+        newTitle === 'Anonymous' ||
+        newTitle === 'Unknown' ||
+        newTitle === 'Guest' ||
+        newTitle === ''
+      ) {
+        newTitle = 'Anonymous';
+      }
       titles.push(newTitle);
     });
+
+    //Get the content
     $('.text').each((idx, elem) => {
       let eachContent = $(elem).text();
+
+      //Remove unnessecey letters && spaces
       eachContent = eachContent
         .split(/\t|\n/)
         .filter((text) => !/^\s*$/g.test(text));
@@ -49,6 +69,8 @@ async function createScraper() {
       contents.push(eachContent);
     });
     let count = 0;
+
+    //Get author & date & time
     $('.col-sm-6').each((idx, elem) => {
       if (count % 2 === 0) {
         let authorAndDate = $(elem).text();
@@ -70,6 +92,7 @@ async function createScraper() {
       count++;
     });
 
+    //Put all the data in array of objects
     const allPastes = [];
     for (let i = 0; i < titles.length; i++) {
       allPastes.push({
