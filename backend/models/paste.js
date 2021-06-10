@@ -5,9 +5,9 @@ const pastesSchema = new mongoose.Schema({
   content: { type: Array, require: true },
   author: { type: String },
   creationDate: { type: Date, require: true },
-  creationTime: { type: Number, require: true },
+  creationTime: { type: String, require: true },
 });
 
-const paste = mongoose.model('paste', pastesSchema);
+const Paste = mongoose.model('pastes', pastesSchema);
 
-module.exports = paste;
+module.exports = Paste;

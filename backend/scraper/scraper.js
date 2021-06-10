@@ -80,6 +80,7 @@ async function createScraper() {
         creationTime: creationTime[i],
       });
     }
+
     return allPastes;
   } catch (err) {
     console.log(err);

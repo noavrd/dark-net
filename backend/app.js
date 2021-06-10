@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const paste = require('./models/paste');
+const Paste = require('./models/paste');
 const scraper = require('./scraper/scraper');
 
 app.use(cors());
@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/pastes', async (req, res) => {
   try {
-    const allPastes = await paste.find({});
+    const allPastes = await Paste.find({});
 
     res.send(allPastes);
   } catch (err) {
@@ -23,8 +23,19 @@ app.get('/api/pastes', async (req, res) => {
 
 app.post('/api/addPaste', async (req, res) => {
   try {
-    const newPastes = await scraper();
-    res.send(newPastes);
+    const allPastes = await scraper();
+    for (let paste of allPastes) {
+      const existsPastes = await Paste.findOne({
+        title: paste.title,
+        content: paste.content,
+      });
+
+      if (!existsPastes) {
+        const newPaste = new Paste(paste);
+        await newPaste.save();
+      }
+    }
+    res.send('Pastes added successfully');
   } catch (err) {
     res.status(500).send(err);
   }
