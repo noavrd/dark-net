@@ -49,19 +49,34 @@ async function createScraper() {
         let authorAndDate = $(elem).text();
         let arr = [];
         arr = authorAndDate.split(' ');
+        if (
+          arr[2] === 'Anonymous' ||
+          arr[2] === 'Unknown' ||
+          arr[2] === 'Guest' ||
+          arr[2] === ''
+        ) {
+          arr[2] = 'Anonymous';
+        }
         authors.push(arr[2]);
         creationDate.push(`${arr[4]}/${arr[5]}/${arr[6]}`);
         creationTime.push(arr[7]);
       }
       count++;
     });
-    console.log(titles);
-    console.log(contents);
-    console.log(authors);
-    console.log(creationDate);
-    console.log(creationTime);
+
+    const allPastes = [];
+    for (let i = 0; i < titles.length; i++) {
+      allPastes.push({
+        title: titles[i],
+        content: contents[i],
+        author: authors[i],
+        creationDate: creationDate[i],
+        creationTime: creationTime[i],
+      });
+    }
+    return allPastes;
   } catch (err) {
     console.log(err);
   }
 }
-createScraper();
+module.exports = createScraper;
