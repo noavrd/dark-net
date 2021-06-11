@@ -4,7 +4,6 @@ import PuffLoader from 'react-spinners/PuffLoader';
 import SinglePaste from './SinglePaste';
 export default function Home() {
   const [allPastes, setAllPastes] = useState([]);
-  const [postFinished, setPostFinished] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
   useEffect(() => {
     axios
