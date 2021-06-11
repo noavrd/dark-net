@@ -54,6 +54,7 @@ export default function Home() {
         if (err.message !== 'new request') {
           if (err.response.status === 404) {
             setError('No headline found');
+            setAllPastes([]);
             console.log(2);
           } else {
             setError('Server problem please try again');
@@ -82,13 +83,9 @@ export default function Home() {
             onChange={(event) => setSearchInput(event.target.value)}></input>
 
           {error ? <div>{error}</div> : ''}
-          {allPastes
-            .sort((a, b) => {
-              return new Date(b.creationDate) - new Date(a.creationDate);
-            })
-            .map((singlePaste, i) => {
-              return <SinglePaste singlePaste={singlePaste} key={i} />;
-            })}
+          {allPastes.map((singlePaste, i) => {
+            return <SinglePaste singlePaste={singlePaste} key={i} />;
+          })}
         </div>
       )}
     </div>
