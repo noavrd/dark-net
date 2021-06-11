@@ -38,10 +38,14 @@ export default function Home() {
       ) : (
         ''
       )}
-
-      {allPastes.map((singlePaste, i) => {
-        return <SinglePaste singlePaste={singlePaste} key={i} />;
-      })}
+      {console.log(allPastes)}
+      {allPastes
+        .sort((a, b) => {
+          return new Date(b.creationDate) - new Date(a.creationDate);
+        })
+        .map((singlePaste, i) => {
+          return <SinglePaste singlePaste={singlePaste} key={i} />;
+        })}
     </div>
   );
 }
