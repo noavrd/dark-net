@@ -3,7 +3,7 @@ export default function SinglePaste({ singlePaste }) {
     <div className="singlePaste">
       <h3>{singlePaste.title}</h3>
       {singlePaste.content.map((data, i) => {
-        return <p className={i}>{data}</p>;
+        return <p key={i}>{data}</p>;
       })}
       <div>
         <span>{singlePaste.author}</span>
