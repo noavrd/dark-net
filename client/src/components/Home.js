@@ -47,7 +47,6 @@ export default function Home() {
       })
       .then((res) => {
         setAllPastes(res.data);
-        console.log(res.data);
         setError('');
       })
       .catch((err) => {

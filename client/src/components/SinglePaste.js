@@ -8,7 +8,8 @@ export default function SinglePaste({ singlePaste }) {
       <div>
         <span>{singlePaste.author}</span>
         <span> </span>
-        <span>{singlePaste.creationDate}</span>
+        <span>{singlePaste.creationDate.slice(0, 10)} </span>
+        <span>{singlePaste.creationDate.slice(11, 19)}</span>
       </div>
     </div>
   );
