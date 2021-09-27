@@ -5,12 +5,9 @@ import SinglePaste from './SinglePaste';
 
 const BASE_URL = 'http://localhost:8080/api';
 
-let cancelToken;
-export default function Home() {
-  const [allPastes, setAllPastes] = useState([]);
+export default function Home({ allPastes, setAllPastes, error, setError }) {
   const [showSpinner, setShowSpinner] = useState(true);
-  const [searchInput, setSearchInput] = useState('');
-  const [error, setError] = useState('');
+
   useEffect(() => {
     axios
       .post(`${BASE_URL}/addPaste`)
@@ -34,38 +31,10 @@ export default function Home() {
       });
   }, []);
 
-  useEffect(() => {
-    if (typeof cancelToken != typeof undefined) {
-      cancelToken.cancel('new request');
-    }
-
-    cancelToken = axios.CancelToken.source();
-
-    axios
-      .get(`${BASE_URL}/pastes?searchText=${searchInput}`, {
-        cancelToken: cancelToken.token,
-      })
-      .then((res) => {
-        setAllPastes(res.data);
-        setError('');
-      })
-      .catch((err) => {
-        console.log(err.message);
-        if (err.message !== 'new request') {
-          if (err.response.status === 404) {
-            setError('No headline found');
-            setAllPastes([]);
-            console.log(2);
-          } else {
-            setError('Server problem please try again');
-          }
-        }
-      });
-  }, [searchInput]);
   return (
     <div>
       {showSpinner ? (
-        <div>
+        <div className="main">
           <PuffLoader
             color="#f0689b"
             loading={true}
@@ -75,13 +44,7 @@ export default function Home() {
           {error ? <div>{error}</div> : ''}
         </div>
       ) : (
-        <div>
-          <input
-            className="search"
-            value={searchInput}
-            placeholder="Search Paste..."
-            onChange={(event) => setSearchInput(event.target.value)}></input>
-
+        <div className="main">
           {error ? <div>{error}</div> : ''}
           {allPastes.map((singlePaste, i) => {
             return <SinglePaste singlePaste={singlePaste} key={i} />;

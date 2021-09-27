@@ -1,0 +1,39 @@
+body {
+  background-image: url('./167479.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+
+  color: white;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  font-size: 4vh;
+}
+
+.headline {
+  display: inline;
+  /* display: block; */
+  color: white;
+  /* text-align: center; */
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'Alfa Slab One', cursive;
+}
+
+.search-nav {
+  float: right;
+  font-size: 3vh;
+}
+
+.main {
+  padding-top: 5vh;
+}
