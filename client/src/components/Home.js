@@ -34,18 +34,18 @@ export default function Home({ allPastes, setAllPastes, error, setError }) {
   return (
     <div>
       {showSpinner ? (
-        <div className="main">
+        <div className="main spinner">
           <PuffLoader
-            color="#f0689b"
+            color="#000000"
             loading={true}
             size={150}
             speedMultiplier={0.88}
           />
-          {error ? <div>{error}</div> : ''}
+          {error ? <div className="error">{error}</div> : ''}
         </div>
       ) : (
-        <div className="main">
-          {error ? <div>{error}</div> : ''}
+        <div className="main paste">
+          {error ? <div className="error">{error}</div> : ''}
           {allPastes.map((singlePaste, i) => {
             return <SinglePaste singlePaste={singlePaste} key={i} />;
           })}

@@ -1,11 +1,10 @@
 body {
-  background-image: url('./167479.jpg');
+  background-image: url('./12.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-
-  color: white;
+  font-family: 'Rubik', sans-serif;
 }
 .nav {
   position: fixed;
@@ -15,34 +14,32 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
-  font-size: 4vh;
+  background-color: #a0dad2;
+  font-size: 5vh;
 }
 
 .headline {
   display: inline;
-  /* display: block; */
-  color: white;
-  /* text-align: center; */
   padding: 14px 16px;
   text-decoration: none;
   font-family: 'Alfa Slab One', cursive;
 }
 
 .search-nav {
-  padding-top: 1.2vh;
+  padding-top: 2vh;
   float: right;
   font-size: 3vh;
 }
 
 .main {
-  padding-top: 5vh;
+  padding-top: 7vh;
 }
 input {
   outline: 0;
   border-bottom: 2px solid grey;
   background: transparent;
   border: 0;
+  font-family: 'Rubik', sans-serif;
 }
 #search-symbol {
   padding-right: 1vw;
@@ -50,4 +47,29 @@ input {
 
 input:focus {
   color: white;
+}
+.error {
+  padding-top: 5vh;
+  text-align: center;
+  font-size: 7vh;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  padding-top: 35vh;
+}
+.singlePaste {
+  font-size: 2vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  color: black;
+}
+h3 {
+  border-bottom: 1px solid black;
+  padding-left: 2vw;
+  font-weight: bold;
+}
+.bottom,
+.content {
+  padding-left: 2vw;
 }
