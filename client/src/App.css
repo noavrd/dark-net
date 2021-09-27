@@ -45,9 +45,6 @@ input {
   padding-right: 1vw;
 }
 
-input:focus {
-  color: white;
-}
 .error {
   padding-top: 5vh;
   text-align: center;
@@ -121,4 +118,8 @@ h3 {
 .next.disabled {
   pointer-events: none;
   color: transparent;
+}
+
+.notfound {
+  margin-top: 10vh;
 }

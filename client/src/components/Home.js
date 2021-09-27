@@ -45,8 +45,11 @@ export default function Home({ allPastes, setAllPastes, error, setError }) {
         </div>
       ) : (
         <div className="main paste">
-          {error ? <div className="error">{error}</div> : ''}
-          <Pagination allPastes={allPastes} pageLimit={5} dataLimit={10} />
+          {error ? (
+            <div className="error">{error}</div>
+          ) : (
+            <Pagination allPastes={allPastes} pageLimit={5} dataLimit={10} />
+          )}
         </div>
       )}
     </div>
