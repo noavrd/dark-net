@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PuffLoader from 'react-spinners/PuffLoader';
+import Pagination from './Pagination';
 import SinglePaste from './SinglePaste';
 
 const BASE_URL = 'http://localhost:8080/api';
@@ -46,9 +47,7 @@ export default function Home({ allPastes, setAllPastes, error, setError }) {
       ) : (
         <div className="main paste">
           {error ? <div className="error">{error}</div> : ''}
-          {allPastes.map((singlePaste, i) => {
-            return <SinglePaste singlePaste={singlePaste} key={i} />;
-          })}
+          <Pagination allPastes={allPastes} pageLimit={5} dataLimit={10} />
         </div>
       )}
     </div>
