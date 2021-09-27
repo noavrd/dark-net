@@ -48,7 +48,7 @@ export default function NavBar({
         placeholder="Search Paste..."
         onChange={(event) => setSearchInput(event.target.value)}
       />
-      <i className="fa fa-search search-nav"></i>
+      <i className="fa fa-search search-nav" id="search-symbol"></i>
     </div>
   );
 }

@@ -30,10 +30,24 @@ body {
 }
 
 .search-nav {
+  padding-top: 1.2vh;
   float: right;
   font-size: 3vh;
 }
 
 .main {
   padding-top: 5vh;
+}
+input {
+  outline: 0;
+  border-bottom: 2px solid grey;
+  background: transparent;
+  border: 0;
+}
+#search-symbol {
+  padding-right: 1vw;
+}
+
+input:focus {
+  color: white;
 }
