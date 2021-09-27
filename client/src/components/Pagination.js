@@ -18,9 +18,7 @@ export default function Pagination({
   }
 
   function changePage(item) {
-    // console.log(item);
     const pageNumber = Number(item);
-    console.log(pageNumber);
     setCurrentPage(pageNumber);
   }
 
@@ -46,7 +44,7 @@ export default function Pagination({
         <button
           onClick={goToPreviousPage}
           className={`prev ${currentPage === 1 ? 'disabled' : ''}`}>
-          Prev
+          {'<<'}
         </button>
         {getPaginatedGroup().map((item, index) => (
           <button
@@ -61,7 +59,7 @@ export default function Pagination({
         <button
           onClick={goToNextPage}
           className={`next ${currentPage === pages ? 'disabled' : ''}`}>
-          next
+          {'>>'}
         </button>
       </div>
     </div>

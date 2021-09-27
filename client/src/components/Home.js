@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PuffLoader from 'react-spinners/PuffLoader';
 import Pagination from './Pagination';
-import SinglePaste from './SinglePaste';
 
 const BASE_URL = 'http://localhost:8080/api';
 
