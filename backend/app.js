@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const Paste = require('./models/paste');
 const scraper = require('./scraper/scraper');
+const cron = require('node-cron');
 
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,9 @@ app.get('/api/pastes', async (req, res) => {
 
     if (!searchText) {
       const allPastes = await Paste.find({});
+      allPastes.sort((a, b) => {
+        return new Date(b.creationDate) - new Date(a.creationDate);
+      });
       res.send(allPastes);
       return;
     }
@@ -39,21 +43,28 @@ app.get('/api/pastes', async (req, res) => {
 
 app.post('/api/addPaste', async (req, res) => {
   try {
-    const allPastes = await scraper();
-    for (let paste of allPastes) {
-      const existsPastes = await Paste.findOne({
-        title: paste.title,
-        content: paste.content,
-      });
-
-      if (!existsPastes) {
-        const newPaste = new Paste(paste);
-        await newPaste.save();
-      }
-    }
+    await createNewPaste();
     res.send('Pastes added successfully');
   } catch (err) {
     res.status(500).send(err);
   }
 });
+
+async function createNewPaste() {
+  const allPastes = await scraper();
+  for (let paste of allPastes) {
+    const existsPastes = await Paste.findOne({
+      title: paste.title,
+      content: paste.content,
+    });
+
+    if (!existsPastes) {
+      const newPaste = new Paste(paste);
+      await newPaste.save();
+    }
+  }
+}
+const scrapeTask = cron.schedule('*/2 * * * *', createNewPaste);
+
+scrapeTask.start();
 module.exports = app;
